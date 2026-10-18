@@ -1,0 +1,8 @@
+{
+  // Cloudflare に公開するための設定。public/ の中身をそのままサイトとして出す
+  "name": "set-sample",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public"
+  }
+}
