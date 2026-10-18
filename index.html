@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<!--
+  ========================================================
+  TRPGシナリオテンプレート「Set」 サンプルページ（見る専用）
+  Developer : ジルコニア賛美
+  X (Twitter) : https://x.com/Zirconia_Praise
+  BOOTH : https://bookshell.booth.pm/
+
+  このページは「Set」の表示見本です。
+  テンプレートは BOOTH で販売しています。
+  ========================================================
+-->
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TRPGシナリオテンプレート「Set」で作ったサンプルシナリオです。背景色の切り替え、コピー枠、名前の置き換え、しおりを試せます。">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="シナリオ書いた後が大変って聞いてなかったんですけど？？｜「Set」サンプル">
+    <meta property="og:description" content="TRPGシナリオテンプレート「Set」で作ったサンプルシナリオです。背景色の切り替え、コピー枠、名前の置き換え、しおりを試せます。">
+    <meta property="og:url" content="https://7575chan.github.io/set-sample/">
+    <meta property="og:image" content="https://7575chan.github.io/set-sample/ogp.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <title>読み込み中...</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* 読み込み中のチラつき防止。スクリプトが途中で止まっても2秒後には必ず表示する */
+        body {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: forceShow 0s 2s forwards;
+        }
+
+        @keyframes forceShow {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // 【設定】シナリオの基本情報
+        // ----------------------------------------------------
+        // 【重要・注意！】
+        // ① ここにある文章を書き換えるだけで、ファイル全体の表示が変わります！
+        // ② 項目の最後にある「,」カンマは絶対に消さないでください（エラーで画面が真っ白になります）。
+        // ③ 「`」バッククォートで囲まれている部分は、文章の途中で自由に改行（Enterキー）が使えます。
+        // ----------------------------------------------------
+        const SCENARIO_CONFIG = {
+            id: "set_sample_site",
+
+            uiBaseColor: "#DC5A3C",
+            uiTextColor: "#FBF3E8",
+
+            title: `シナリオ書いた後が大変って聞いてなかったんですけど？？`,
+            author: `ジルコニア賛美`,
+            version: `ver1.0`,
+            updateDate: `2026/10/18`,
+
+            history: [
+                { date: `2026/10/18`, version: `ver1.0`, detail: `サンプルとして公開` }
+            ],
+
+            catchCopy: `難しいことは分からないけど、
+楽にきれいなシナリオを作りたい！`,
+            subCatchCopy: `これは、TRPGシナリオテンプレート「Set」で作ったサンプルシナリオです。`,
+
+            trailerImg: `trailer.svg`,
+
+            disclaimer: `このシナリオは「Set」の表示見本として作った架空のシナリオです。実際に遊ぶことは想定していません。`,
+
+            credits: [
+                { name: `テンプレートの販売`, label: `ジルコニア賛美 (BOOTH)`, url: `https://bookshell.booth.pm/` },
+                { name: `告知・連絡 (X)`, label: `@Zirconia_Praise`, url: `https://x.com/Zirconia_Praise` }
+            ]
+        };
+    </script>
+
+    <script type="text/template" id="ScenarioSource">
+-
+    </script>
+
+    <!-- ============================================================
+         🔴 システムエリア（通常は編集しないでください）
+         ============================================================ -->
+    <script>
+        // 【テンプレート作者用設定】システム・クレジットのリンク先
+        // ※ 将来まとめページ等ができた際はこちらのURLを変更してください
+        const SYSTEM_CREDIT_URL = "https://bookshell.booth.pm/";
+    </script>
+
+
+    <header>
+        <div class="header-left">
+            <svg id="menu-trigger" class="svg-icon" viewBox="0 0 24 24">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+            <div class="header-title">シナリオタイトル</div>
+        </div>
+        <div class="header-right">
+            <svg id="settings-trigger" class="svg-icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                </path>
+            </svg>
+        </div>
+    </header>
+
+    <div id="settings-panel">
+        <div class="setting-section">
+            <div class="setting-title">テキスト変換（リアルタイム）</div>
+            <div id="dynamic-inputs-container"></div>
+            <div class="btn-group" style="margin-top:10px;">
+                <button class="panel-btn" style="background:#eee; color:#333;" onclick="resetNames()">初期化</button>
+            </div>
+        </div>
+        <hr>
+        <div class="setting-section">
+            <div class="setting-title">背景色</div>
+            <div class="btn-group">
+                <button class="panel-btn" style="background:#fffff9; color:#1E1E1E; border:1px solid #ccc;"
+                    onclick="setTheme('white')">白</button>
+                <button class="panel-btn" style="background:#1E1E1E; color:#ffffff; border:1px solid #1E1E1E;"
+                    onclick="setTheme('dark')">黒</button>
+                <button class="panel-btn" style="background:#2e8b57; color:#ffffff; border:1px solid #2e8b57;"
+                    onclick="setTheme('green')">緑</button>
+            </div>
+        </div>
+        <hr>
+        <div class="setting-section">
+            <div class="setting-title">スタイル</div>
+            <div class="btn-group">
+                <button id="style-btn-gothic" class="panel-btn font-btn" onclick="setFontStyle('gothic')">ゴシック体</button>
+                <button id="style-btn-mincho" class="panel-btn font-btn" onclick="setFontStyle('mincho')">明朝体</button>
+            </div>
+        </div>
+        <hr>
+        <div class="setting-section">
+            <div class="setting-title">フォントサイズ</div>
+            <div class="btn-group">
+                <button class="panel-btn font-btn size-s" onclick="setFontSize('14px')">小</button>
+                <button class="panel-btn font-btn size-m" onclick="setFontSize('16px')">中</button>
+                <button class="panel-btn font-btn size-l" onclick="setFontSize('20px')">大</button>
+            </div>
+        </div>
+    </div>
+
+    <nav id="side-nav">
+        <svg id="nav-close" class="svg-icon" viewBox="0 0 24 24">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+        <div style="margin-bottom: 20px; font-weight: bold; font-size: 18px; letter-spacing: 2px;">MENU</div>
+        <div id="side-toc-container"></div>
+        <div style="margin-top: 40px;">
+            <button class="panel-btn"
+                style="width:100%; border:1px solid var(--ui-text); color:var(--ui-text); background:transparent;"
+                onclick="saveBookmark()">しおりを挟む</button>
+        </div>
+    </nav>
+
+    <main id="TOP">
+        <h1 id="ScenarioTitle">シナリオタイトル</h1>
+        <div id="sys-version"
+            style="text-align: center; font-size: 13px; opacity: 0.8; margin-top: -30px; margin-bottom: 30px; font-family: 'Noto Sans JP', sans-serif;">
+        </div>
+
+        <p id="sys-catch-copy" style="text-align:center; font-weight:bold; letter-spacing: 1px; white-space: pre-wrap;">
+        </p>
+
+        <img id="sys-trailer-img" alt="トレーラー画像" class="trailer-img" onerror="this.style.display='none'">
+
+        <p id="sys-sub-copy" style="text-align:center; font-weight:bold; letter-spacing: 1px; white-space: pre-wrap;">
+        </p>
+
+        <div id="sys-disclaimer" style="font-size: 11px; opacity: 0.6; text-align: center; margin-bottom: 40px;"></div>
+
+        <div id="ScenarioContent" class="auto-format"></div>
+    </main>
+
+    <footer>
+        <div class="credit-list"></div>
+        <div class="copyright"></div>
+    </footer>
+
+    <div id="page-top-btn"><svg viewBox="0 0 24 24">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg></div>
+
+    <div id="lightbox-overlay">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <style>
+        /* ============================================================
+           デザイン設定（色やフォントサイズ）
+           ============================================================ */
+        :root {
+            /* ユーザー設定からJSで上書きされるUIカラー */
+            --ui-base: #001f43;
+            --ui-text: #ffffff;
+
+            /* 背景モードの色固定値 */
+            --bg-white: #fffff9;
+            --bg-black: #1E1E1E;
+            --bg-green: #CAFFD0;
+
+            /* 現在のモードに応じた色（初期値は白モード） */
+            --bg: var(--bg-white);
+            --text: #1E1E1E;
+            --link: #001f43;
+            --accent: #001f43;
+            /* 本文の見出し・枠線 */
+            --marker: #ffff99;
+            /* マーカー */
+
+            --font-size: 16px;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Noto Sans JP', sans-serif;
+            /* 本文はゴシック体（小サイズでも文字がくっきり読める） */
+            font-size: var(--font-size);
+            line-height: 2.0;
+            margin: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* 見出しは常に明朝体（文学的な雰囲気を残す） */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        /* スタイル：明朝体モード（本文のみ切り替わる。見出しは変更されない） */
+        body.font-mincho {
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        /* スタイルボタンの選択状態（ヘッダー色に連動しない固定グレー） */
+        .font-btn.active {
+            background: #555;
+            color: #ffffff;
+            border-color: #555;
+            font-weight: bold;
+        }
+
+        /* ============================================================
+           ★追加：UI要素のテキスト選択無効化（アプリのような操作感）
+           ============================================================ */
+        header,
+        #settings-panel,
+        #side-nav,
+        #page-top-btn,
+        .copy-btn,
+        #lightbox-overlay {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* --- ヘッダー設定 --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: var(--ui-base);
+            color: var(--ui-text);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            box-sizing: border-box;
+            z-index: 2000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .header-title {
+            font-size: 15px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+            flex-shrink: 0;
+        }
+
+        .svg-icon {
+            width: 24px;
+            height: 24px;
+            stroke: var(--ui-text);
+            fill: none;
+            stroke-width: 2;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .svg-icon:hover {
+            opacity: 0.7;
+        }
+
+        /* --- 設定パネル --- */
+        #settings-panel {
+            /* 開閉は .openクラスの付け外しでフェード */
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+            position: fixed;
+            top: 65px;
+            right: 15px;
+            background: #fff;
+            color: #333;
+            border: 1px solid var(--ui-base);
+            border-radius: 6px;
+            padding: 20px;
+            z-index: 2000;
+            width: 280px;
+            max-width: calc(100vw - 30px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            box-sizing: border-box;
+        }
+
+        #settings-panel.open {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .setting-section {
+            margin-bottom: 15px;
+        }
+
+        .setting-title {
+            font-size: 12px;
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        #settings-panel hr {
+            border: none;
+            border-bottom: 1px solid #eee;
+            margin: 15px 0;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .input-group label {
+            width: 100px;
+            margin-right: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #1E1E1E;
+            /* ヘッダー色連動を解除し黒色で固定 */
+            flex-shrink: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 13px;
+            min-width: 0;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .panel-btn {
+            flex: 1;
+            min-width: 60px;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+
+        /* 全ボタン共通のホバー：どんな背景色でも少し暗くなる */
+        .panel-btn:hover {
+            filter: brightness(0.88);
+        }
+
+        .font-btn {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eee;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .size-s {
+            font-size: 11px !important;
+            font-weight: 400;
+        }
+
+        .size-m {
+            font-size: 15px !important;
+            font-weight: 500;
+        }
+
+        .size-l {
+            font-size: 20px !important;
+            font-weight: 700;
+        }
+
+        /* --- サイドメニュー --- */
+        #side-nav {
+            position: fixed;
+            left: -300px;
+            top: 0;
+            width: 280px;
+            height: 100%;
+            background: var(--ui-base);
+            color: var(--ui-text);
+            transition: left 0.3s ease;
+            z-index: 2100;
+            padding: 60px 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        #side-nav.open {
+            left: 0;
+        }
+
+        #nav-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+        }
+
+        #side-nav a {
+            display: block;
+            color: var(--ui-text);
+            padding: 10px 0;
+            text-decoration: none;
+            /* 区切り線は文字色を薄めて使う（明るいテーマ色でも見えるように） */
+            border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+            border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        #side-nav a.active {
+            background: var(--ui-text);
+            border-left: 4px solid var(--ui-text);
+            padding-left: 15px !important;
+            color: var(--ui-base) !important;
+            font-weight: bold;
+        }
+
+        /* --- メインコンテンツ --- */
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 20px 60px;
+            box-sizing: border-box;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        .trailer-img {
+            width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        main a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* Lightbox（画像拡大表示）および本文画像のCSS */
+        main img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 10px 0;
+            cursor: zoom-in;
+            transition: opacity 0.2s;
+        }
+
+        main img:hover {
+            opacity: 0.8;
+        }
+
+        #lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: zoom-out;
+        }
+
+        #lightbox-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 90vh;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+        }
+
+        /* 見出し・カスタムアンカーのデザイン */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            scroll-margin-top: 85px;
+        }
+
+        span.custom-anchor {
+            scroll-margin-top: 85px;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 2.0em;
+            text-align: center;
+            margin: 50px 0;
+            color: var(--accent);
+            /* 本文の見出し色に合わせる（テーマ色だと明るい色のとき背景に溶けて読めない） */
+        }
+
+        h2 {
+            font-size: 1.6em;
+            border-left: 5px solid var(--accent);
+            padding-left: 15px;
+            margin-top: 60px;
+            color: var(--accent);
+        }
+
+        h3 {
+            font-size: 1.3em;
+            border-bottom: 1px dashed var(--accent);
+            margin-top: 40px;
+            padding-bottom: 5px;
+            color: var(--text);
+        }
+
+        .main-toc-box {
+            background: rgba(128, 128, 128, 0.15);
+            border: 1px solid rgba(128, 128, 128, 0.3);
+            padding: 25px 30px;
+            border-radius: 6px;
+            margin: 40px 0;
+        }
+
+        .main-toc-box a {
+            display: block;
+            text-decoration: none;
+            color: var(--link);
+            padding: 3px 0;
+            transition: all 0.2s;
+        }
+
+        .toc-main-1 {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .toc-main-2 {
+            padding-left: 15px !important;
+        }
+
+        .toc-main-3 {
+            padding-left: 30px !important;
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        .toc-side-1 {
+            font-weight: bold;
+            padding-top: 15px !important;
+            color: var(--ui-text) !important;
+        }
+
+        .toc-side-2 {
+            padding-left: 15px !important;
+            font-size: 13px !important;
+        }
+
+        .toc-side-3 {
+            padding-left: 30px !important;
+            font-size: 12px !important;
+        }
+
+        /* 各種「枠」の上下間隔設定 */
+        .dice-box,
+        .kp-grey-box,
+        .copy-box {
+            margin: 20px 0;
+        }
+
+        .dice-box+br,
+        .kp-grey-box+br,
+        .copy-box+br {
+            display: none;
+        }
+
+        /* ダイス判定 */
+        .dice-box {
+            border: 1.5px solid var(--accent);
+            background: rgba(0, 31, 67, 0.03);
+            padding: 15px 20px;
+            border-radius: 5px;
+        }
+
+        .dice-child {
+            margin: 10px 0 10px 60px;
+            padding-left: 20px;
+            border-left: 2px solid var(--accent);
+            font-size: 0.95em;
+        }
+
+        .dice-grandchild {
+            margin: 10px 0 10px 120px;
+            padding-left: 20px;
+            border-left: 1px dashed var(--accent);
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .dice-box>br:last-child,
+        .dice-child>br:last-child,
+        .dice-grandchild>br:last-child {
+            display: none;
+        }
+
+        strong.dice-label {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .dice-svg {
+            width: 1.2em;
+            height: 1.2em;
+            vertical-align: -0.2em;
+            margin-right: 6px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .dice-child .dice-svg {
+            width: 1.15em;
+            height: 1.15em;
+            vertical-align: -0.15em;
+            margin-right: 5px;
+        }
+
+        .dice-grandchild .dice-svg {
+            width: 1.05em;
+            height: 1.05em;
+            vertical-align: -0.1em;
+            margin-right: 4px;
+        }
+
+        .dice-svg circle {
+            fill: var(--accent);
+            stroke: none;
+        }
+
+        .kp-grey-box {
+            background: rgba(128, 128, 128, 0.15);
+            border: 1px solid rgba(128, 128, 128, 0.3);
+            padding: 15px 20px;
+            border-radius: 5px;
+        }
+
+        .copy-box {
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .copy-header {
+            background: var(--accent);
+            padding: 6px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copy-title {
+            color: var(--bg);
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .copy-btn {
+            background: var(--bg);
+            color: var(--accent);
+            border: none;
+            padding: 4px 12px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .copy-content {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .replaceable-text {
+            transition: 0.2s;
+        }
+
+        /* テキスト装飾 */
+        .text-marker {
+            font-weight: bold;
+            background: linear-gradient(transparent 50%, var(--marker) 50%);
+            padding: 0 4px;
+        }
+
+        .dash-conn {
+            letter-spacing: -0.15em;
+            margin-right: 0.15em;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        /* Markdown追加要素のCSS */
+        main hr {
+            border: none;
+            border-top: 1px dashed var(--accent);
+            margin: 40px 0;
+            opacity: 0.6;
+        }
+
+        main ul,
+        main ol {
+            margin: 20px 0;
+            padding-left: 30px;
+            color: var(--text);
+        }
+
+        main li {
+            margin-bottom: 8px;
+            line-height: 1.8;
+        }
+
+        .quote-box {
+            background: rgba(128, 128, 128, 0.08);
+            border-left: 4px solid var(--accent);
+            padding: 15px 25px;
+            margin: 25px 0;
+            border-radius: 0 4px 4px 0;
+            font-family: 'Noto Serif JP', serif;
+            /* 引用枠は明朝体を維持（資料・手紙の雰囲気） */
+            color: var(--text);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .quote-box>br:last-child {
+            display: none;
+        }
+
+        .quote-box+br {
+            display: none;
+        }
+
+        #page-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--ui-base);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1900;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
+        }
+
+        #page-top-btn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #page-top-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #page-top-btn svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--ui-text);
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 0 10px;
+            }
+
+            main {
+                padding: 80px 15px 40px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+
+            #settings-panel {
+                width: calc(100vw - 20px);
+                right: 10px;
+            }
+
+            /* ダイス枠：入れ子は親の中に積み重なるので、スマホでは字下げを小さくして本文幅を確保する */
+            .dice-box {
+                padding: 12px 14px;
+            }
+
+            .dice-child,
+            .dice-grandchild {
+                margin-left: 12px;
+                padding-left: 12px;
+            }
+
+            #page-top-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        footer {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .scenario-footer {
+            padding: 60px 20px;
+        }
+
+        .scenario-footer a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .scenario-footer a:visited {
+            color: var(--link);
+        }
+
+        .system-footer {
+            background: var(--ui-base);
+            color: var(--ui-text);
+            padding: 20px;
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .system-footer a {
+            color: inherit;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: bold;
+        }
+
+        .credit-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto 30px;
+        }
+
+        .credit-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dotted rgba(0, 0, 0, 0.2);
+            padding-bottom: 5px;
+        }
+
+        .copyright {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        @media print {
+            @page {
+                /* 上:12mm／右:15mm／下:18mm／左:15mm (ページ番号と本文・枠線の重なりを防ぐ下余白) */
+                margin: 12mm 15mm 18mm 15mm;
+
+                @bottom-center {
+                    content: "- " counter(page) " -";
+                    font-size: 9pt;
+                    color: #444;
+                    font-family: sans-serif;
+                    vertical-align: top;
+                    padding-top: 3mm;
+                }
+            }
+
+            /* 背景色（白・黒・緑）の設定に関係なく、白い紙に黒い文字で印刷する。
+               JSが付けるインラインの色指定より !importantが優先される */
+            :root {
+                --bg: #fff !important;
+                --text: #000 !important;
+                --link: #000 !important;
+                --accent: #000 !important;
+            }
+
+            body {
+                background-color: #fff !important;
+                color: #000 !important;
+                font-size: 11pt !important;
+            }
+
+            #settings-panel,
+            #side-nav,
+            #page-top-btn,
+            .svg-icon,
+            .copy-btn,
+            .panel-btn,
+            .credit-list,
+            #lightbox-overlay {
+                display: none !important;
+            }
+
+            header {
+                position: static !important;
+                background: none !important;
+                color: #000 !important;
+                box-shadow: none !important;
+                height: auto !important;
+                padding: 0 0 15px 0 !important;
+                margin-bottom: 30px;
+                border-bottom: 2px solid #000;
+            }
+
+            .header-title {
+                font-size: 18pt !important;
+                white-space: normal !important;
+            }
+
+            main {
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            main a {
+                color: #000 !important;
+                border-color: #000 !important;
+                text-decoration: none !important;
+            }
+
+            .dice-svg {
+                stroke: #000 !important;
+            }
+
+            .dice-svg circle {
+                fill: #000 !important;
+            }
+
+            .dice-box,
+            .kp-grey-box,
+            .copy-box,
+            .quote-box,
+            .main-toc-box,
+            .history-table {
+                background: transparent !important;
+                border: 1px solid #000 !important;
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+            .dice-child,
+            .dice-grandchild {
+                border-left: 2px solid #000 !important;
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+            strong.dice-label {
+                color: #000 !important;
+            }
+
+            .copy-header {
+                background: #eee !important;
+                color: #000 !important;
+            }
+
+            .copy-title {
+                color: #000 !important;
+            }
+
+            footer {
+                padding: 0 !important;
+                border-top: 1px solid #000 !important;
+            }
+
+            .scenario-footer {
+                padding: 20px 0 !important;
+            }
+
+            .system-footer {
+                background: transparent !important;
+                color: #000 !important;
+                padding: 10px 0 !important;
+            }
+
+            .system-footer a {
+                color: #000 !important;
+            }
+
+            .text-marker {
+                background: none !important;
+                color: #000 !important;
+            }
+
+            .replaceable-text {
+                color: inherit !important;
+                font-weight: inherit;
+            }
+        }
+
+        /* 更新履歴テーブル */
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 40px;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .history-table th,
+        .history-table td {
+            border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        .history-table th {
+            border-bottom: 2px solid var(--accent);
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .history-table td.history-version {
+            font-weight: bold;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .history-table td.history-date {
+            white-space: nowrap;
+            color: var(--text);
+            opacity: 0.8;
+        }
+    </style>
+
+    <script>
+        // 見る専用のサンプルのため、本文はあらかじめHTMLにしてある
+        const ScenarioParser = {
+            parse: function () { return PRERENDERED; }
+        };
+        const PRERENDERED = {"html":"<h2 id=\"sec-1\">このページについて<\/h2>このページは、TRPGシナリオテンプレート「Set」で作ったサンプルです。<br>テキストの原稿に記号を付けて貼るだけで、このページの形になります。<br><br><ul><li>右上の歯車から、背景色・フォント・文字サイズを切り替えられます<\/li><li>同じく歯車の中で、HOの名前を入力すると、本文の名前がすべて置き換わります<\/li><li>左上の ≡ から目次を開き、読みかけの場所にしおりを挟めます<\/li><li>「コピーする」ボタンで、PLに送る文章をそのままコピーできます<\/li><\/ul><br>「Set」は<a href=\"https://bookshell.booth.pm/\" target=\"_blank\" rel=\"noopener noreferrer\">BOOTH<\/a>で販売しています。<h2 id=\"sec-2\">目次<\/h2><div class=\"main-toc-box\"><a href=\"#sec-1\" class=\"toc-main-2\">このページについて<\/a><a href=\"#sec-2\" class=\"toc-main-2\">目次<\/a><a href=\"#sec-3\" class=\"toc-main-2\">1. 概要<\/a><a href=\"#sec-4\" class=\"toc-main-3\">└ あらすじ<\/a><a href=\"#sec-5\" class=\"toc-main-2\">2. 導入<\/a><a href=\"#sec-6\" class=\"toc-main-3\">└ HOクリエイター<\/a><a href=\"#sec-7\" class=\"toc-main-3\">└ HOプレイヤー<\/a><a href=\"#sec-8\" class=\"toc-main-3\">└ 導入描写<\/a><a href=\"#sec-9\" class=\"toc-main-2\">3. 作業部屋の探索<\/a><a href=\"#sec-10\" class=\"toc-main-3\">└ 机<\/a><a href=\"#sec-11\" class=\"toc-main-3\">└ 本棚<\/a><a href=\"#sec-12\" class=\"toc-main-3\">└ モニター<\/a><a href=\"#sec-13\" class=\"toc-main-2\">4. 締め切り<\/a><a href=\"#sec-14\" class=\"toc-main-2\">5. エンディング<\/a><a href=\"#sec-15\" class=\"toc-main-3\">└ エンド1：公開できた<\/a><a href=\"#sec-16\" class=\"toc-main-3\">└ エンド2：また明日<\/a><a href=\"#sec-17\" class=\"toc-main-2\">後書き<\/a><a href=\"#sec-18\" class=\"toc-main-3\">└ 更新履歴<\/a><\/div><h2 id=\"sec-3\">1. 概要<\/h2>形式：2PL（{HOクリエイター：HOクリエイター}／{HOプレイヤー：HOプレイヤー}）<br>時間目安：1時間程度<br>傾向：シナリオ制作あるある、ほのぼの<br>推奨：シナリオを書いたことがある、または書いてみたい人<h3 id=\"sec-4\">あらすじ<\/h3>シナリオは書き終えた。あとは公開するだけ……のはずだった。<br>改行は崩れ、目次はなく、PLに送る秘匿は手作業でコピーするしかない。<br>締め切りは今夜。二人は、原稿を「読める形」にできるだろうか。<h2 id=\"sec-5\">2. 導入<\/h2><h3 id=\"sec-6\">HOクリエイター<\/h3><div class=\"copy-box\"><div class=\"copy-header\"><span class=\"copy-title\">HOクリエイター 秘匿<\/span><button class=\"copy-btn\" onclick=\"copySnippet(this)\">コピーする<\/button><\/div><div class=\"copy-content\">あなたは、今夜中にシナリオを公開すると約束した。<br>{HOプレイヤー：HOプレイヤー}に、完成版を見せたい。<br><br>原稿は、もう書き終えている。<\/div><\/div><h3 id=\"sec-7\">HOプレイヤー<\/h3><div class=\"copy-box\"><div class=\"copy-header\"><span class=\"copy-title\">HOプレイヤー 秘匿<\/span><button class=\"copy-btn\" onclick=\"copySnippet(this)\">コピーする<\/button><\/div><div class=\"copy-content\">あなたは、{HOクリエイター：HOクリエイター}のシナリオで遊ぶ日を楽しみにしている。<br>ただ、送られてきた原稿は、スマホではとても読みにくかった。<\/div><\/div><h3 id=\"sec-8\">導入描写<\/h3>{HOクリエイター：HOクリエイター}が目を覚ますと、書きかけの原稿に囲まれた作業部屋にいた。<br>モニターには、改行の崩れたシナリオが映っている。<br>隣では{HOプレイヤー：HOプレイヤー}が、スマホの画面を拡大したり縮小したりしている。<div class=\"kp-grey-box\"><strong>【KP情報】<\/strong><br>二人が合流したら、探索に進む。どの場所から調べてもかまわない。<\/div><h2 id=\"sec-9\">3. 作業部屋の探索<\/h2><h3 id=\"sec-10\">机<\/h3><div class=\"dice-box\"><svg class=\"dice-svg\" viewBox=\"0 0 24 24\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\" ry=\"2\"><\/rect><circle cx=\"8.5\" cy=\"8.5\" r=\"1.5\"><\/circle><circle cx=\"15.5\" cy=\"15.5\" r=\"1.5\"><\/circle><circle cx=\"15.5\" cy=\"8.5\" r=\"1.5\"><\/circle><circle cx=\"8.5\" cy=\"15.5\" r=\"1.5\"><\/circle><circle cx=\"12\" cy=\"12\" r=\"1.5\"><\/circle><\/svg><span><strong>〈観察〉<\/strong><\/span><br><br><strong class=\"dice-label\">成功：<\/strong><br>机の端に付箋が一枚。「HTMLで配布したい」と、{HOプレイヤー：HOプレイヤー}の字で書かれている。<br><br><strong class=\"dice-label\">失敗：<\/strong><br>積み上がった資料が、今にも崩れそうだ。<div class=\"dice-child\"><svg class=\"dice-svg\" viewBox=\"0 0 24 24\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\" ry=\"2\"><\/rect><circle cx=\"8.5\" cy=\"8.5\" r=\"1.5\"><\/circle><circle cx=\"15.5\" cy=\"15.5\" r=\"1.5\"><\/circle><circle cx=\"15.5\" cy=\"8.5\" r=\"1.5\"><\/circle><circle cx=\"8.5\" cy=\"15.5\" r=\"1.5\"><\/circle><circle cx=\"12\" cy=\"12\" r=\"1.5\"><\/circle><\/svg><span><strong>〈知識〉<\/strong><\/span><br><strong class=\"dice-label\">成功：<\/strong><br>記号を付けて貼るだけで、原稿が整う方法を思い出す。<\/div><\/div><h3 id=\"sec-11\">本棚<\/h3>本棚の一番上に、古いメモが挟まっている。<br><br><div class=\"quote-box\">締め切り前の自分へ<br>原稿を書き終えたら、それで終わりだと思っていないか。<br>読む人が迷わない形にするまでが、シナリオだ。<\/div><h3 id=\"sec-12\">モニター<\/h3>モニターには、公開までに残った作業が並んでいる。<br><br><ol><li>見出しを付けて、目次を作る<\/li><li>判定の場面を、枠で囲む<\/li><li>PLに送る文章を、コピーしやすくする<\/li><li>スマホでも読めるか確かめる<\/li><\/ol><div class=\"kp-grey-box\"><strong>【KP情報】<\/strong><br>三つの場所をすべて調べたら、<a href=\"#sec-13\">4. 締め切り<\/a>に進む。<\/div><h2 id=\"sec-13\">4. 締め切り<\/h2>時計の針は、23時を回った。<br>{HOクリエイター：HOクリエイター}は、原稿に記号を付けていく。<div class=\"dice-box\"><svg class=\"dice-svg\" viewBox=\"0 0 24 24\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\" ry=\"2\"><\/rect><circle cx=\"8.5\" cy=\"8.5\" r=\"1.5\"><\/circle><circle cx=\"15.5\" cy=\"15.5\" r=\"1.5\"><\/circle><circle cx=\"15.5\" cy=\"8.5\" r=\"1.5\"><\/circle><circle cx=\"8.5\" cy=\"15.5\" r=\"1.5\"><\/circle><circle cx=\"12\" cy=\"12\" r=\"1.5\"><\/circle><\/svg><span><strong>〈集中〉<\/strong><\/span><br><br><strong class=\"dice-label\">成功：<\/strong><br>すべての記号を付け終える。ブラウザで開くと、原稿がきれいに並んでいた。<br><br><strong class=\"dice-label\">失敗：<\/strong><br>最後の一行で手が止まる。それでも、締め切りには間に合いそうだ。<\/div><div class=\"copy-box\"><div class=\"copy-header\"><span class=\"copy-title\">描写<\/span><button class=\"copy-btn\" onclick=\"copySnippet(this)\">コピーする<\/button><\/div><div class=\"copy-content\">画面の中で、崩れていた原稿が、読みやすいページに変わっていく。<br>見出しが並び、判定は枠に収まり、秘匿はボタン一つでコピーできる。<\/div><\/div><h2 id=\"sec-14\">5. エンディング<\/h2><h3 id=\"sec-15\">エンド1：公開できた<\/h3>{HOプレイヤー：HOプレイヤー}のスマホに、完成したシナリオが届く。<br>「読みやすい」と、短い返事が来た。<h3 id=\"sec-16\">エンド2：また明日<\/h3>締め切りには間に合わなかった。<br>けれど、原稿はもう半分まで整っている。明日には、きっと届けられる。<br><br><hr><h2 id=\"sec-17\">後書き<\/h2>最後まで読んでいただき、ありがとうございます。<br>このページと同じ形のシナリオを、テキストの原稿から作れます。<br>くわしくは<a href=\"https://bookshell.booth.pm/\" target=\"_blank\" rel=\"noopener noreferrer\">BOOTHの商品ページ<\/a>をご覧ください。<h3 id=\"sec-18\">更新履歴<\/h3><table class=\"history-table\">\n                                <thead>\n                                    <tr>\n                                        <th>更新日<\/th>\n                                        <th>バージョン<\/th>\n                                        <th>更新内容<\/th>\n                                    <\/tr>\n                                <\/thead>\n                                <tbody><tr>\n                                    <td class=\"history-date\">2026/10/18<\/td>\n                                    <td class=\"history-version\">ver1.0<\/td>\n                                    <td>サンプルとして公開<\/td>\n                                <\/tr><\/tbody><\/table><br>","sideToc":"<a href=\"#sec-1\" class=\"toc-side-2\">このページについて<\/a><a href=\"#sec-2\" class=\"toc-side-2\">目次<\/a><a href=\"#sec-3\" class=\"toc-side-2\">1. 概要<\/a><a href=\"#sec-4\" class=\"toc-side-3\">あらすじ<\/a><a href=\"#sec-5\" class=\"toc-side-2\">2. 導入<\/a><a href=\"#sec-6\" class=\"toc-side-3\">HOクリエイター<\/a><a href=\"#sec-7\" class=\"toc-side-3\">HOプレイヤー<\/a><a href=\"#sec-8\" class=\"toc-side-3\">導入描写<\/a><a href=\"#sec-9\" class=\"toc-side-2\">3. 作業部屋の探索<\/a><a href=\"#sec-10\" class=\"toc-side-3\">机<\/a><a href=\"#sec-11\" class=\"toc-side-3\">本棚<\/a><a href=\"#sec-12\" class=\"toc-side-3\">モニター<\/a><a href=\"#sec-13\" class=\"toc-side-2\">4. 締め切り<\/a><a href=\"#sec-14\" class=\"toc-side-2\">5. エンディング<\/a><a href=\"#sec-15\" class=\"toc-side-3\">エンド1：公開できた<\/a><a href=\"#sec-16\" class=\"toc-side-3\">エンド2：また明日<\/a><a href=\"#sec-17\" class=\"toc-side-2\">後書き<\/a><a href=\"#sec-18\" class=\"toc-side-3\">更新履歴<\/a>","mainToc":"<a href=\"#sec-1\" class=\"toc-main-2\">このページについて<\/a><a href=\"#sec-2\" class=\"toc-main-2\">目次<\/a><a href=\"#sec-3\" class=\"toc-main-2\">1. 概要<\/a><a href=\"#sec-4\" class=\"toc-main-3\">└ あらすじ<\/a><a href=\"#sec-5\" class=\"toc-main-2\">2. 導入<\/a><a href=\"#sec-6\" class=\"toc-main-3\">└ HOクリエイター<\/a><a href=\"#sec-7\" class=\"toc-main-3\">└ HOプレイヤー<\/a><a href=\"#sec-8\" class=\"toc-main-3\">└ 導入描写<\/a><a href=\"#sec-9\" class=\"toc-main-2\">3. 作業部屋の探索<\/a><a href=\"#sec-10\" class=\"toc-main-3\">└ 机<\/a><a href=\"#sec-11\" class=\"toc-main-3\">└ 本棚<\/a><a href=\"#sec-12\" class=\"toc-main-3\">└ モニター<\/a><a href=\"#sec-13\" class=\"toc-main-2\">4. 締め切り<\/a><a href=\"#sec-14\" class=\"toc-main-2\">5. エンディング<\/a><a href=\"#sec-15\" class=\"toc-main-3\">└ エンド1：公開できた<\/a><a href=\"#sec-16\" class=\"toc-main-3\">└ エンド2：また明日<\/a><a href=\"#sec-17\" class=\"toc-main-2\">後書き<\/a><a href=\"#sec-18\" class=\"toc-main-3\">└ 更新履歴<\/a>"};
+
+        // localStorageが使えない環境（サイトデータのブロック等）でも止まらないようにする
+        function safeGet(key) {
+            try { return localStorage.getItem(key); } catch (e) { return null; }
+        }
+        function safeSet(key, value) {
+            try { localStorage.setItem(key, value); return true; } catch (e) { return false; }
+        }
+        function safeRemove(key) {
+            try { localStorage.removeItem(key); } catch (e) { }
+        }
+
+        function showErrorBanner(message) {
+            document.body.insertAdjacentHTML('afterbegin', `
+                <div style="background-color: #ffe6e6; color: #cc0000; padding: 15px; text-align: center; font-weight: bold; border-bottom: 2px solid #cc0000; z-index: 9999; position: relative; font-size: 14px;">
+                    ${message}
+                </div>
+            `);
+        }
+
+        // 文字があれば表示し、空なら要素ごと隠す
+        function setTextOrHide(id, text) {
+            const el = document.getElementById(id);
+            if (text) {
+                el.textContent = text;
+                el.style.display = '';
+            } else {
+                el.style.display = 'none';
+            }
+        }
+
+        // IDが空欄・初期値のままなら、タイトルと作者名から自動で作る（他のシナリオと保存データが混ざらないように）
+        const DEFAULT_SCENARIO_IDS = ['', 'zirconia_praise_001'];
+        function resolveScenarioId(config) {
+            if (!config) return 'default_scenario_id';
+            const id = String(config.id || '').trim();
+            if (!DEFAULT_SCENARIO_IDS.includes(id)) return id;
+            const source = String(config.title || '') + '\u0000' + String(config.author || '');
+            // FNV-1a（32bit）で短い英数字にする
+            let hash = 0x811c9dc5;
+            for (let i = 0; i < source.length; i++) {
+                hash ^= source.charCodeAt(i);
+                hash = Math.imul(hash, 0x01000193) >>> 0;
+            }
+            return 'auto_' + hash.toString(36);
+        }
+
+        function initScenario() {
+            try {
+                const scenarioId = resolveScenarioId(typeof SCENARIO_CONFIG !== 'undefined' ? SCENARIO_CONFIG : null);
+                const storagePrefix = 'zirconia_' + scenarioId + '_';
+
+
+                // Step 4: 変数の流し込み
+                if (typeof SCENARIO_CONFIG !== 'undefined') {
+                    if (SCENARIO_CONFIG.uiBaseColor) {
+                        document.documentElement.style.setProperty('--ui-base', SCENARIO_CONFIG.uiBaseColor);
+
+                        // --- ファビコン（タブのアイコン）のカラー同期処理 ---
+                        let encodedColor = SCENARIO_CONFIG.uiBaseColor.replace('#', '%23'); // #をURL用に変換
+                        let svgData = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' stroke='${encodedColor}' fill='none' stroke-width='2'%3E%3Cg transform='translate(1.8, 5.0) scale(0.85)'%3E%3Crect x='3' y='3' width='18' height='18' rx='2' ry='2'/%3E%3Ccircle cx='8.5' cy='8.5' r='1.5' fill='${encodedColor}' stroke='none'/%3E%3Ccircle cx='15.5' cy='15.5' r='1.5' fill='${encodedColor}' stroke='none'/%3E%3Ccircle cx='15.5' cy='8.5' r='1.5' fill='${encodedColor}' stroke='none'/%3E%3Ccircle cx='8.5' cy='15.5' r='1.5' fill='${encodedColor}' stroke='none'/%3E%3Ccircle cx='12' cy='12' r='1.5' fill='${encodedColor}' stroke='none'/%3E%3C/g%3E%3C/svg%3E`;
+                        let faviconLink = document.createElement('link');
+                        faviconLink.rel = 'icon';
+                        faviconLink.type = 'image/svg+xml';
+                        faviconLink.href = svgData;
+                        document.head.appendChild(faviconLink);
+                    }
+                    if (SCENARIO_CONFIG.uiTextColor) {
+                        document.documentElement.style.setProperty('--ui-text', SCENARIO_CONFIG.uiTextColor);
+                    }
+
+                    document.title = SCENARIO_CONFIG.title + "｜" + SCENARIO_CONFIG.author;
+                    document.querySelector('.header-title').textContent = SCENARIO_CONFIG.title;
+                    document.getElementById('ScenarioTitle').textContent = SCENARIO_CONFIG.title;
+
+                    // タイトルの近くにバージョン番号を表示（改修①）
+                    setTextOrHide('sys-version', SCENARIO_CONFIG.version);
+
+                    setTextOrHide('sys-catch-copy', SCENARIO_CONFIG.catchCopy);
+                    setTextOrHide('sys-sub-copy', SCENARIO_CONFIG.subCatchCopy);
+
+                    const trailerImg = document.getElementById('sys-trailer-img');
+                    if (SCENARIO_CONFIG.trailerImg) {
+                        trailerImg.setAttribute('src', SCENARIO_CONFIG.trailerImg);
+                    } else {
+                        trailerImg.style.display = 'none';
+                    }
+
+                    const disclaimer = document.getElementById('sys-disclaimer');
+                    if (SCENARIO_CONFIG.disclaimer) {
+                        disclaimer.innerHTML = SCENARIO_CONFIG.disclaimer.replace(/\n/g, '<br>');
+                    } else {
+                        disclaimer.style.display = 'none';
+                    }
+
+                    // フッターの構築
+                    let creditsHtml = `<div class="scenario-footer">
+                        <div class="credit-list">`;
+
+                    // 固定クレジット項目を追加
+                    creditsHtml += `<div class="credit-item"><span>シナリオタイトル</span><span>${SCENARIO_CONFIG.title}</span></div>`;
+                    if (SCENARIO_CONFIG.version) {
+                        creditsHtml += `<div class="credit-item"><span>バージョン番号</span><span>${SCENARIO_CONFIG.version}</span></div>`;
+                    }
+                    if (SCENARIO_CONFIG.updateDate) {
+                        creditsHtml += `<div class="credit-item"><span>更新日</span><span>${SCENARIO_CONFIG.updateDate}</span></div>`;
+                    }
+                    creditsHtml += `<div class="credit-item"><span>作者名</span><span>${SCENARIO_CONFIG.author}</span></div>`;
+
+                    if (SCENARIO_CONFIG.credits && SCENARIO_CONFIG.credits.length > 0) {
+                        SCENARIO_CONFIG.credits.forEach(c => {
+                            creditsHtml += `<div class="credit-item"><span>${c.name}</span><a href="${c.url}" target="_blank">${c.label}</a></div>`;
+                        });
+                    }
+                    creditsHtml += `</div>
+                        <div class="copyright">&copy; ${SCENARIO_CONFIG.author} All Rights Reserved.</div>
+                    </div>
+                    <div class="system-footer">
+                        TRPGシナリオテンプレート「Set」 by <a href="${SYSTEM_CREDIT_URL}" target="_blank">ジルコニア賛美</a>
+                    </div>`;
+                    document.querySelector('footer').innerHTML = creditsHtml;
+                } else {
+                    showErrorBanner(`【エラー】設定エリア（SCENARIO_CONFIG）の読み込みに失敗しました。<br>
+                        「,（カンマ）」や「\`（バッククォート）」が消えていないか確認してください。`);
+                }
+
+                let rawHtml = document.getElementById('ScenarioSource').innerHTML;
+                if (rawHtml) {
+                    let parsed = ScenarioParser.parse(rawHtml);
+                    document.getElementById('ScenarioContent').innerHTML = parsed.html;
+                    document.getElementById('side-toc-container').innerHTML = parsed.sideToc;
+                }
+
+                initializeScanner('#ScenarioContent, #side-toc-container', '#dynamic-inputs-container', storagePrefix);
+
+                const settingsPanel = document.getElementById('settings-panel');
+                const sideNav = document.getElementById('side-nav');
+
+                document.getElementById('settings-trigger').addEventListener('click', function () {
+                    settingsPanel.classList.toggle('open');
+                    sideNav.classList.remove('open');
+                });
+                document.getElementById('menu-trigger').addEventListener('click', function () {
+                    sideNav.classList.add('open');
+                    settingsPanel.classList.remove('open');
+                });
+                document.querySelectorAll('#nav-close, #side-nav a').forEach(el => {
+                    el.addEventListener('click', function () { sideNav.classList.remove('open'); });
+                });
+
+                // パネルの外をクリックしたら閉じる（歯車アイコンの線を押した場合も「外」と判定しない）
+                document.addEventListener('mouseup', function (e) {
+                    if (!e.target.closest('#settings-panel, #settings-trigger')) {
+                        settingsPanel.classList.remove('open');
+                    }
+                });
+
+                // しおりは「直前の見出し」と「次の見出しまでの進み具合（0〜1）」で保存する。
+                // 文字サイズ・フォント・画面幅が変わっても、同じ場所に戻れるようにするため。
+                const BOOKMARK_OFFSET = 85; // 固定ヘッダーの高さ（見出しのscroll-margin-topと同じ）
+                function getBookmarkHeadings() {
+                    return Array.from(document.querySelectorAll('main h1, main h2, main h3, main h4, main h5'));
+                }
+                function absTop(el) {
+                    return el.getBoundingClientRect().top + window.scrollY;
+                }
+                window.saveBookmark = function () {
+                    const list = getBookmarkHeadings();
+                    const point = window.scrollY + BOOKMARK_OFFSET;
+                    let index = -1;
+                    list.forEach((h, i) => { if (absTop(h) <= point) index = i; });
+                    const start = index >= 0 ? absTop(list[index]) : 0;
+                    const end = index + 1 < list.length ? absTop(list[index + 1]) : document.documentElement.scrollHeight;
+                    const ratio = end > start ? Math.min(Math.max((point - start) / (end - start), 0), 1) : 0;
+                    const data = {
+                        i: index,
+                        t: index >= 0 ? list[index].textContent.trim() : '',
+                        r: Math.round(ratio * 1000) / 1000
+                    };
+                    if (safeSet(storagePrefix + 'bookmark', JSON.stringify(data))) {
+                        alert("しおりを挟みました。");
+                    } else {
+                        alert("このブラウザの設定では、しおりを保存できません。");
+                    }
+                };
+                function bookmarkTop(saved) {
+                    // 古い形式（ピクセル位置の数値）のしおり
+                    if (/^\d+(\.\d+)?$/.test(saved)) return parseFloat(saved);
+                    let data;
+                    try { data = JSON.parse(saved); } catch (e) { return null; }
+                    if (!data || typeof data.i !== 'number') return null;
+                    const list = getBookmarkHeadings();
+                    let index = -1;
+                    if (data.i >= 0) {
+                        // 同じ文字の見出しを探す（同名が複数あれば、保存時の順番に近いもの）。見つからなければ順番で探す
+                        list.forEach((h, i) => {
+                            if (h.textContent.trim() === data.t && (index < 0 || Math.abs(i - data.i) < Math.abs(index - data.i))) index = i;
+                        });
+                        if (index < 0) index = Math.min(data.i, list.length - 1);
+                    }
+                    const start = index >= 0 ? absTop(list[index]) : 0;
+                    const end = index + 1 < list.length ? absTop(list[index + 1]) : document.documentElement.scrollHeight;
+                    const ratio = Math.min(Math.max(Number(data.r) || 0, 0), 1);
+                    return Math.max(start + (end - start) * ratio - BOOKMARK_OFFSET, 0);
+                }
+                function loadBookmark() {
+                    const saved = safeGet(storagePrefix + 'bookmark');
+                    if (!saved) return;
+                    const restore = () => setTimeout(() => {
+                        const top = bookmarkTop(saved);
+                        if (top !== null) window.scrollTo({ top: top, behavior: 'smooth' });
+                    }, 100);
+                    // 画像とフォントの読み込みが終わってから位置を計算する
+                    const afterFonts = () => (document.fonts && document.fonts.ready ? document.fonts.ready.then(restore, restore) : restore());
+                    if (document.readyState === 'complete') afterFonts();
+                    else window.addEventListener('load', afterFonts);
+                }
+
+                loadBookmark();
+                loadTheme();
+                loadFontSize();
+                loadFontStyle();
+
+                const pageTopBtn = document.getElementById('page-top-btn');
+                const headings = document.querySelectorAll('main h1, main h2, main h3, main h4, main h5');
+                const sideTocLinks = document.querySelectorAll('#side-toc-container a');
+
+                let scrollTimeout;
+                window.addEventListener('scroll', function () {
+                    pageTopBtn.classList.toggle('show', window.scrollY > 300);
+
+                    if (scrollTimeout) { clearTimeout(scrollTimeout); }
+                    scrollTimeout = setTimeout(function () {
+                        let scrollPos = window.scrollY + 120;
+                        let currentId = "";
+
+                        headings.forEach(h => {
+                            if (h.getBoundingClientRect().top + window.scrollY <= scrollPos) {
+                                currentId = h.id;
+                            }
+                        });
+
+                        if (currentId) {
+                            sideTocLinks.forEach(a => {
+                                a.classList.toggle('active', a.getAttribute('href') === '#' + currentId);
+                            });
+                        }
+                    }, 50);
+                });
+
+                pageTopBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+
+                const lightbox = document.getElementById('lightbox-overlay');
+                const lightboxImg = document.getElementById('lightbox-img');
+
+                document.querySelectorAll('main img').forEach(img => {
+                    img.addEventListener('click', function () {
+                        const src = this.getAttribute('src');
+                        if (src) {
+                            lightboxImg.setAttribute('src', src);
+                            lightbox.classList.add('show');
+                        }
+                    });
+                });
+
+                function closeLightbox() {
+                    lightbox.classList.remove('show');
+                    setTimeout(() => {
+                        if (!lightbox.classList.contains('show')) {
+                            lightboxImg.setAttribute('src', '');
+                        }
+                    }, 300);
+                }
+                lightbox.addEventListener('click', closeLightbox);
+                // Escキーでも閉じる
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape' && lightbox.classList.contains('show')) closeLightbox();
+                });
+            } catch (err) {
+                console.error(err);
+                showErrorBanner(`【エラー】表示の途中で問題が発生しました。<br>
+                    直前に編集した箇所に記号の抜けや書き間違いがないか確認してください。`);
+            } finally {
+                // 途中で失敗しても、画面が真っ白のままにならないようにする
+                document.body.style.opacity = "1";
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initScenario);
+        } else {
+            initScenario();
+        }
+
+        function toPlainTitle(text) {
+            return text
+                .replace(/｜([^《]+?)《([^》]+?)》/g, '$1')
+                .replace(/\*\*(.*?)\*\*/g, '$1')
+                .replace(/==(.*?)==/g, '$1');
+        }
+
+        function formatKeywords(text) {
+            let t = text.replace(/(成功[：:]|失敗[：:])/g, '<strong class="dice-label">$1</strong>');
+            t = t.replace(/(〈[^〉]+〉)/g, '<strong>$1</strong>');
+            t = t.replace(/――/g, '<span class="dash-conn">――</span>');
+            return t;
+        }
+
+        // containerSelectorはカンマ区切りで複数指定できる（本文とサイドメニューの目次など）
+        function initializeScanner(containerSelector, panelSelector, storagePrefix) {
+            const containers = document.querySelectorAll(containerSelector);
+            const panel = document.querySelector(panelSelector);
+            if (containers.length === 0 || !panel) return;
+
+            const foundTags = new Map();
+            const TAG_REGEX = /\{([^}：:]+)(?:[：:]([^}]+))?\}/g;
+
+            containers.forEach(container => {
+                container.innerHTML = container.innerHTML.replace(TAG_REGEX, (match, id, label) => {
+                    const displayLabel = label || id;
+                    foundTags.set(id, displayLabel);
+                    return `<span data-id="${id}" class="replaceable-text" title="${displayLabel}を入力">${displayLabel}</span>`;
+                });
+            });
+
+            if (foundTags.size === 0) {
+                panel.innerHTML = '<div style="font-size:11px; color:#999;">置換タグが見つかりませんでした</div>';
+                return;
+            }
+
+            const priorityList = ['PC', 'KPC', 'HO1', 'HO2', 'HO3', 'HO4'];
+
+            const sortedTags = Array.from(foundTags.entries()).sort((a, b) => {
+                let indexA = priorityList.indexOf(a[0]);
+                let indexB = priorityList.indexOf(b[0]);
+                if (indexA === -1) indexA = 9999;
+                if (indexB === -1) indexB = 9999;
+
+                if (indexA !== indexB) {
+                    return indexA - indexB;
+                } else {
+                    return 0;
+                }
+            });
+
+            sortedTags.forEach(([id, label]) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'input-group';
+                const labelEl = document.createElement('label');
+                labelEl.textContent = label;
+                labelEl.title = label;
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = `${label}`;
+
+                const savedValue = safeGet(storagePrefix + 'text_' + id);
+                if (savedValue) {
+                    input.value = savedValue;
+                    setTimeout(() => updateText(id, savedValue), 0);
+                }
+
+                input.addEventListener('input', (e) => {
+                    const newValue = e.target.value;
+                    const displayText = newValue || label;
+                    updateText(id, displayText);
+                    if (newValue) safeSet(storagePrefix + 'text_' + id, newValue);
+                    else safeRemove(storagePrefix + 'text_' + id);
+                });
+
+                wrapper.appendChild(labelEl);
+                wrapper.appendChild(input);
+                panel.appendChild(wrapper);
+            });
+        }
+
+        function updateText(id, value) {
+            const targets = document.querySelectorAll(`span[data-id="${id}"]`);
+            targets.forEach(el => el.textContent = value);
+        }
+
+        function resetNames() {
+            const inputs = document.querySelectorAll('#dynamic-inputs-container input');
+            inputs.forEach(input => {
+                input.value = '';
+                input.dispatchEvent(new Event('input'));
+            });
+            alert("変換を初期化しました。");
+        }
+
+        function setTheme(mode) {
+            const root = document.documentElement;
+            if (mode === 'white') {
+                root.style.setProperty('--bg', 'var(--bg-white)');
+                root.style.setProperty('--text', '#1E1E1E');
+                root.style.setProperty('--link', '#001f43');
+                root.style.setProperty('--accent', '#001f43'); // ダークブルー
+                root.style.setProperty('--marker', '#ffff99'); // 優しい黄色
+            } else if (mode === 'dark') {
+                root.style.setProperty('--bg', 'var(--bg-black)');
+                root.style.setProperty('--text', '#fffff9');
+                root.style.setProperty('--link', '#4da6ff'); // 紫がからない明るいブルー
+                root.style.setProperty('--accent', '#b0c4de'); // 明るいシルバーブルー
+                root.style.setProperty('--marker', '#ff8c00'); // ディープオレンジ
+            } else if (mode === 'green') {
+                root.style.setProperty('--bg', 'var(--bg-green)');
+                root.style.setProperty('--text', '#1E1E1E');
+                root.style.setProperty('--link', '#001f43');
+                root.style.setProperty('--accent', '#001f43'); // ダークブルー
+                root.style.setProperty('--marker', '#ffcc80'); // マイルドなオレンジ
+            }
+            safeSet('zirconia_theme', mode);
+        }
+
+        function loadTheme() { const savedTheme = safeGet('zirconia_theme'); if (savedTheme) setTheme(savedTheme); }
+        function setFontSize(size) {
+            document.documentElement.style.setProperty('--font-size', size);
+            safeSet('zirconia_font_size', size);
+            // フォントサイズボタンの選択状態を更新
+            const sizeMap = { '14px': '.size-s', '16px': '.size-m', '20px': '.size-l' };
+            document.querySelectorAll('.size-s, .size-m, .size-l').forEach(btn => btn.classList.remove('active'));
+            if (sizeMap[size]) document.querySelector(sizeMap[size]).classList.add('active');
+        }
+        function loadFontSize() { const savedSize = safeGet('zirconia_font_size'); if (savedSize) setFontSize(savedSize); }
+        function setFontStyle(style) {
+            const isMincho = style === 'mincho';
+            document.body.classList.toggle('font-mincho', isMincho);
+            document.getElementById('style-btn-mincho').classList.toggle('active', isMincho);
+            document.getElementById('style-btn-gothic').classList.toggle('active', !isMincho);
+            safeSet('zirconia_font_style', style);
+        }
+        function loadFontStyle() { const saved = safeGet('zirconia_font_style'); setFontStyle(saved || 'gothic'); }
+
+        function copySnippet(btn) {
+            const textToCopy = btn.closest(".copy-box").querySelector(".copy-content").innerText.trim();
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(textToCopy).then(() => { showCopySuccess(btn); }).catch(() => { fallbackCopy(textToCopy, btn); });
+            } else { fallbackCopy(textToCopy, btn); }
+        }
+
+        function fallbackCopy(text, btn) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed"; textArea.style.top = "0"; textArea.style.left = "0"; textArea.style.opacity = "0";
+            document.body.appendChild(textArea);
+            textArea.select(); textArea.setSelectionRange(0, 99999);
+            try { document.execCommand('copy'); showCopySuccess(btn); } catch (err) { alert("コピー機能がブロックされています。"); }
+            document.body.removeChild(textArea);
+        }
+
+        function showCopySuccess(btn) {
+            const oldText = btn.textContent; btn.textContent = "完了！";
+            btn.style.background = "#fff"; btn.style.color = "var(--accent)";
+            setTimeout(() => { btn.textContent = oldText; btn.style.background = "var(--bg)"; btn.style.color = "var(--accent)"; }, 1500);
+        }
+    </script>
+</body>
+
+</html>
