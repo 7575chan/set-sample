@@ -28,7 +28,7 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <title>読み込み中...</title>
+    <title>シナリオは書くより配布ファイルの準備が大変！｜ジルコニア賛美</title>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap"
@@ -106,7 +106,7 @@
 
     <header>
         <div class="header-left">
-            <svg id="menu-trigger" class="svg-icon" viewBox="0 0 24 24">
+            <svg id="menu-trigger" class="svg-icon" viewBox="0 0 24 24" role="button" tabindex="0" aria-label="目次メニューを開く">
                 <line x1="3" y1="12" x2="21" y2="12"></line>
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -114,7 +114,7 @@
             <div class="header-title">シナリオタイトル</div>
         </div>
         <div class="header-right">
-            <svg id="settings-trigger" class="svg-icon" viewBox="0 0 24 24">
+            <svg id="settings-trigger" class="svg-icon" viewBox="0 0 24 24" role="button" tabindex="0" aria-label="表示の設定を開く">
                 <circle cx="12" cy="12" r="3"></circle>
                 <path
                     d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
@@ -163,7 +163,7 @@
     </div>
 
     <nav id="side-nav">
-        <svg id="nav-close" class="svg-icon" viewBox="0 0 24 24">
+        <svg id="nav-close" class="svg-icon" viewBox="0 0 24 24" role="button" tabindex="0" aria-label="目次メニューを閉じる">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
@@ -200,7 +200,7 @@
         <div class="copyright"></div>
     </footer>
 
-    <div id="page-top-btn"><svg viewBox="0 0 24 24">
+    <div id="page-top-btn" role="button" tabindex="0" aria-label="ページの先頭へ戻る"><svg viewBox="0 0 24 24" aria-hidden="true">
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg></div>
 
@@ -321,6 +321,13 @@
             align-items: center;
             margin-left: 10px;
             flex-shrink: 0;
+        }
+
+        /* アイコンだけのボタン：キーボードで選んだときに枠を出す */
+        [role="button"]:focus-visible {
+            outline: 2px solid currentColor;
+            outline-offset: 3px;
+            border-radius: 4px;
         }
 
         .svg-icon {
@@ -1302,6 +1309,15 @@
 
                 const settingsPanel = document.getElementById('settings-panel');
                 const sideNav = document.getElementById('side-nav');
+
+                // アイコンだけのボタン（目次・設定・閉じる・先頭へ）を、キーボードの Enter／スペースでも押せるようにする
+                document.querySelectorAll('[role="button"]').forEach(el => {
+                    el.addEventListener('keydown', e => {
+                        if (e.key !== 'Enter' && e.key !== ' ') return;
+                        e.preventDefault();
+                        el.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+                    });
+                });
 
                 document.getElementById('settings-trigger').addEventListener('click', function () {
                     settingsPanel.classList.toggle('open');
