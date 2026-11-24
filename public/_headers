@@ -3,7 +3,9 @@
 #   ページの中に書いたスクリプトとスタイルを使うので 'unsafe-inline' は外せない
 # - frame-ancestors / X-Frame-Options：ほかのサイトに埋め込まれないようにする（クリックジャッキング対策）
 # - Permissions-Policy：使わないカメラ・マイク・位置情報を止める
+# - Strict-Transport-Security：このサイトにはいつも HTTPS でつなぐよう、ブラウザに伝える（pages.dev は共用なので includeSubDomains は付けない）
 /*
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=31536000
